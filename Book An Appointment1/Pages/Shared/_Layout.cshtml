@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Book_An_Appointment</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <style>
+            body {
+                background-color: #f8f9fa;
+            }
+
+            .navbar {
+                box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            }
+
+            .navbar-brand {
+                font-weight: bold;
+                color: #0d6efd !important;
+            }
+
+            .nav-link {
+                font-weight: 500;
+            }
+
+            footer {
+                background-color: #ffffff;
+                padding: 15px 0;
+                text-align: center;
+            }
+    </style>
+</head>
+
+<body>
+
+    <!-- ✅ Header (Same Structure, Slightly Enhanced UI) -->
+    <header>
+        <!-- Top Header -->
+        <div class="container-fluid bg-light py-2">
+            <div class="row align-items-center">
+
+                <!-- Left: User + Logo -->
+                <div class="col-md-3 d-flex align-items-center">
+                    @* <div style="width:40px;height:40px;border-radius:50%;background:#ccc;display:flex;align-items:center;justify-content:center;margin-right:10px;">
+                        AS
+                    </div> *@
+                    <img src="~/image/logo.png" alt="Logo" style="height:120px;" />
+                </div>
+
+                <!-- Center: Title -->
+                <div class="col-md-5 text-center">
+                    <h1 style="color:#ff4d00; font-weight:500;">
+                        Book an Appointment
+                    </h1>
+                </div>
+
+                <!-- Right: Helpline -->
+                <div class="col-md-4 text-end">
+                    <div><strong>Helpline No:</strong></div>
+                    <div>Sector 14: 0124-4797600</div>
+                    <div>Sector 56: 906-906-8800</div>
+                    <div>Sector 82: 0124-3528282</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Bottom Orange Bar -->
+        <div style="background-color:#ff4d00; height:20px;"></div>
+
+        <!-- Optional Navbar (if needed) -->
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-page="/BindFacility">Facility</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-page="/Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ✅ Main Body -->
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- ✅ Footer (Same but Clean Look) -->
+    <footer class="border-top text-muted mt-4">
+        <div class="container">
+            Disclaimer : Booking of an appointment is valid only for self-paying patients due to technical reasons, if you inadvertently booked an appointment and you are not self-paying patient then your appointment may be liable to be cancelled. For Panel (Any Goverment Panel cash/Credit) Patients, Please call Sector 14: 0124-4797600 Sector 56: 906-906-8800 Sector 82: 0124-3528282 to take appointment.About us Terms of Use Refund & Cancellations Policy Privacy policy
+            <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <!-- ✅ Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

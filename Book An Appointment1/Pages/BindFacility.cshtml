@@ -1,0 +1,35 @@
+﻿@page
+@model Book_An_Appointment1.Pages.BindFacilityModel
+@{
+    ViewData["Title"] = "Facility Management";
+}
+
+<div class="container mt-4">
+    <div class="card p-4">
+        <h4>Facility Management</h4>
+
+        @* Error box — tab dikhega jab API fail ho *@
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger mt-2">
+                @Model.ErrorMessage
+            </div>
+        }
+
+        <form method="post">
+            @Html.AntiForgeryToken()
+
+            <div class="mb-3 mt-3">
+                <label class="form-label">Select Facility</label>
+
+                @* Dropdown auto-populate hoga page load pe — no JS needed *@
+                <select asp-for="SelectedFacilityId"
+                        asp-items="Model.FacilityList"
+                        class="form-select">
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Load Data</button>
+        </form>
+    </div>
+</div>
