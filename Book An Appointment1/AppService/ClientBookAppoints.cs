@@ -32,7 +32,7 @@ namespace Book_An_Appointment1.AppService
             // ── "FacilityClient" use karo ─────────────────────────
             // AuthHandler automatically Bearer token attach karega
             // BaseAddress already set hai Program.cs mein
-            var client = _httpClientFactory.CreateClient("FacilityClient");
+            var client = _httpClientFactory.CreateClient("ApiClient");
 
             // ── URL build karo ────────────────────────────────────
              facilityCode = "3";
@@ -64,11 +64,11 @@ namespace Book_An_Appointment1.AppService
                     if (content.TrimStart().StartsWith("["))
                     {
                         var list = JsonConvert.DeserializeObject<List<FacilityItem>>(content);
-                        return new FacilityOutput { Success = true, Data = list };
+                        return new FacilityOutput { Status = "success", Data = list };
                     }
                     // API object return kare toh
                     return JsonConvert.DeserializeObject<FacilityOutput>(content)
-                           ?? new FacilityOutput { Success = false, Message = "Empty response" };
+                           ?? new FacilityOutput { Status = "false", Message = "Empty response" };
 
                 case HttpStatusCode.Unauthorized:
                     throw new UnauthorizedAccessException("Token invalid ya expire ho gaya.");
@@ -82,25 +82,6 @@ namespace Book_An_Appointment1.AppService
         }
     }
 }
-
-//public async Task<FacilityOutput> GetFacilityAsync(string facilityCode, string hospitalLocationId)
-//{
-//    var baseUrl = _configuration["ApiSettings:BaseUrl"];
-//    var fullUrl = $"{baseUrl}{ConstantValuecs.GetFacility}?facilityCode={facilityCode}&hospitalLocationId={hospitalLocationId}";
-//    var client = _httpClientFactory.CreateClient();
-//    var response = await client.GetAsync(fullUrl);
-//    var content = await response.Content.ReadAsStringAsync();
-
-//    if (response.IsSuccessStatusCode)
-//    {
-//        var result = JsonConvert.DeserializeObject<FacilityOutput>(content);
-//        return result;
-//    }
-//    else
-//    {
-//        throw new Exception($"API failed: {response.StatusCode}, {content}");
-//    }
-//}
 
 
 
